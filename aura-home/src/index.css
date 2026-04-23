@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-headline: "Manrope", sans-serif;
+  
+  --color-primary: #006d4c;
+  --color-primary-container: #58f1b4;
+  --color-on-primary: #e6ffef;
+  --color-on-primary-container: #00563b;
+  
+  --color-secondary: #875400;
+  --color-secondary-container: #ffddb9;
+  --color-on-secondary-container: #754800;
+  
+  --color-tertiary: #00639f;
+  --color-tertiary-container: #40a4f4;
+  
+  --color-surface: #f8faf9;
+  --color-surface-dim: #d4dbda;
+  --color-surface-bright: #f8faf9;
+  --color-surface-variant: #dde4e3;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f0f4f3;
+  --color-surface-container: #eaefee;
+  --color-surface-container-high: #e4e9e8;
+  --color-surface-container-highest: #dde4e3;
+  
+  --color-on-surface: #2d3433;
+  --color-on-surface-variant: #596060;
+  --color-outline: #757c7b;
+  --color-outline-variant: #acb3b2;
+  
+  --radius-lg: 2rem;
+  --radius-xl: 3rem;
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface font-sans antialiased selection:bg-primary-container selection:text-on-primary-container;
+  }
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.font-manrope {
+  font-family: 'Manrope', sans-serif;
+}
+
+.glass-panel {
+  @apply bg-surface-container-lowest/70 backdrop-blur-2xl;
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-container) 100%);
+}
+
+.tap-highlight-none {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* убираем стандартные отступы */
+body {
+  margin: 0;
+  background: #111; /* фон вокруг "телефона" */
+}
+
+/* центрируем приложение */
+#root {
+  width: 375px;          /* фиксированная ширина телефона */
+  height: 812px;         /* фиксированная высота */
+  margin: 0 auto;        /* по центру */
+  background: white;
+  overflow: hidden;
+}
+
+#root {
+  width: 375px;
+  height: 812px;
+  margin: 0 auto;
+  background: white;
+  overflow: hidden;
+
+  position: relative; /* ВАЖНО */
+}
