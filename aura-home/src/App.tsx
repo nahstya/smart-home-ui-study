@@ -1469,10 +1469,8 @@ export default function App() {
     );
   };
 
-// ... (все ваши функции renderHome, renderRoom и т.д. остаются выше)
 
   return (
-    /* ФОН: Серый/темный фон вокруг "телефона" */
     <div className="min-h-screen bg-[#111] flex items-center justify-center p-4">
       
       {/* РАМКА ТЕЛЕФОНА */}
