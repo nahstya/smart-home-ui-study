@@ -1469,108 +1469,95 @@ export default function App() {
     );
   };
 
-
   return (
-    <div className="min-h-screen bg-[#111] flex items-center justify-center p-4">
-      
-      {/* РАМКА ТЕЛЕФОНА */}
-      <div id="root" className="relative w-[375px] h-[812px] bg-surface overflow-hidden rounded-[3rem] shadow-2xl border-[8px] border-[#222] flex flex-col">
-        
-        {/* ОСНОВНОЙ КОНТЕНТ */}
-        <main className="flex-1 overflow-y-auto scrollable-content px-4">
-          <div className="pt-4">
-            {currentScreen === 'home' && renderHome()}
-            {currentScreen === 'room' && renderRoom()}
-            {currentScreen === 'lightControl' && renderLightControl()}
-            {currentScreen === 'addDevice' && renderAddDevice()}
-            {currentScreen === 'notifications' && renderNotifications()}
-            {currentScreen === 'explanation' && renderExplanation()}
-            {currentScreen === 'settings' && renderSettings()}
-            {currentScreen === 'myAutomations' && renderMyAutomations()}
-            {currentScreen === 'myDevices' && renderMyDevices()}
-            {currentScreen === 'automationBuilder' && renderAutomationBuilder()}
-            {currentScreen === 'connectionFlow' && (
-              <ConnectionFlow 
-                onBack={goBack} 
-                onFinish={() => {
-                  const newSpeaker: Device = {
-                    id: Math.random().toString(36).substr(2, 9),
-                    name: 'Aura Speaker',
-                    room: 'Гостиная',
-                    type: 'speaker',
-                    status: 'on',
-                    value: 65
-                  };
-                  setDevices(prev => [...prev, newSpeaker]);
-                  navigate('settings');
-                  setTimeout(() => navigate('home'), 100);
-                }} 
-              />
-            )}
-          </div>
-          
-          <div className="h-32" />
-        </main>
-
-        {/* Navigation Bar */}
-        {currentScreen !== 'connectionFlow' && (
-          <nav className="absolute bottom-0 left-0 w-full glass-panel pt-4 pb-8 px-8 border-t border-surface-container flex justify-around items-center z-40 rounded-t-[3rem] shadow-2xl">
-            <button 
-              onClick={() => navigate('home')}
-              className={`flex flex-col items-center gap-1 transition-all ${currentScreen === 'home' || currentScreen === 'room' || currentScreen === 'lightControl' ? 'text-primary' : 'text-on-surface-variant/40'}`}
-            >
-              <Home fill={currentScreen === 'home' ? 'currentColor' : 'none'} />
-              <span className="text-[10px] font-bold uppercase tracking-widest">Дом</span>
-            </button>
-            <button 
-              onClick={() => navigate('notifications')}
-              className={`flex flex-col items-center gap-1 transition-all ${currentScreen === 'notifications' ? 'text-primary' : 'text-on-surface-variant/40'}`}
-            >
-              <Bell fill={currentScreen === 'notifications' ? 'currentColor' : 'none'} />
-              <span className="text-[10px] font-bold uppercase tracking-widest">Уведомления</span>
-            </button>
-            <button 
-              onClick={() => navigate('settings')}
-              className={`flex flex-col items-center gap-1 transition-all ${currentScreen === 'settings' || currentScreen === 'myAutomations' || currentScreen === 'myDevices' ? 'text-primary' : 'text-on-surface-variant/40'}`}
-            >
-              <Settings fill={currentScreen === 'settings' ? 'currentColor' : 'none'} />
-              <span className="text-[10px] font-bold uppercase tracking-widest">Настройки</span>
-            </button>
-          </nav>
+    <div className="min-h-screen flex flex-col max-w-2xl mx-auto px-4 bg-surface">
+      <main className="flex-1 pb-32">
+        {currentScreen === 'home' && renderHome()}
+        {currentScreen === 'room' && renderRoom()}
+        {currentScreen === 'lightControl' && renderLightControl()}
+        {currentScreen === 'addDevice' && renderAddDevice()}
+        {currentScreen === 'notifications' && renderNotifications()}
+        {currentScreen === 'explanation' && renderExplanation()}
+        {currentScreen === 'settings' && renderSettings()}
+        {currentScreen === 'myAutomations' && renderMyAutomations()}
+        {currentScreen === 'myDevices' && renderMyDevices()}
+        {currentScreen === 'automationBuilder' && renderAutomationBuilder()}
+        {currentScreen === 'connectionFlow' && (
+          <ConnectionFlow 
+            onBack={goBack} 
+            onFinish={() => {
+              const newSpeaker: Device = {
+                id: Math.random().toString(36).substr(2, 9),
+                name: 'Aura Speaker',
+                room: 'Гостиная',
+                type: 'speaker',
+                status: 'on',
+                value: 65
+              };
+              setDevices(prev => [...prev, newSpeaker]);
+              navigate('settings'); // Navigate back to settings as requested or home
+              setTimeout(() => navigate('home'), 100); // Hacky way to ensure counts refresh and user sees the result
+            }} 
+          />
         )}
+      </main>
 
-        {/* Away Mode Overlay */}
-        <AnimatePresence>
-          {showAwayTimer && (
+      {/* Navigation Bar */}
+      <nav className="absolute bottom-0 left-0 w-full glass-panel pt-4 pb-8 px-8 border-t border-surface-container flex justify-around items-center z-40 rounded-t-[3rem] shadow-2xl">
+        <button 
+          onClick={() => navigate('home')}
+          className={`flex flex-col items-center gap-1 transition-all ${currentScreen === 'home' || currentScreen === 'room' || currentScreen === 'lightControl' ? 'text-primary' : 'text-on-surface-variant/40'}`}
+        >
+          <Home fill={currentScreen === 'home' ? 'currentColor' : 'none'} />
+          <span className="text-[10px] font-bold uppercase tracking-widest">Дом</span>
+        </button>
+        <button 
+          onClick={() => navigate('notifications')}
+          className={`flex flex-col items-center gap-1 transition-all ${currentScreen === 'notifications' ? 'text-primary' : 'text-on-surface-variant/40'}`}
+        >
+          <Bell fill={currentScreen === 'notifications' ? 'currentColor' : 'none'} />
+          <span className="text-[10px] font-bold uppercase tracking-widest">Уведомления</span>
+        </button>
+        <button 
+          onClick={() => navigate('settings')}
+          className={`flex flex-col items-center gap-1 transition-all ${currentScreen === 'settings' || currentScreen === 'myAutomations' || currentScreen === 'myDevices' ? 'text-primary' : 'text-on-surface-variant/40'}`}
+        >
+          <Settings fill={currentScreen === 'settings' ? 'currentColor' : 'none'} />
+          <span className="text-[10px] font-bold uppercase tracking-widest">Настройки</span>
+        </button>
+      </nav>
+
+      {/* Away Mode Overlay */}
+      <AnimatePresence>
+        {showAwayTimer && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-[#1a1c1b]/95 backdrop-blur-xl flex flex-col items-center justify-center p-8 text-center text-white"
+          >
             <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="absolute inset-0 z-50 bg-[#1a1c1b]/95 backdrop-blur-xl flex flex-col items-center justify-center p-8 text-center text-white"
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              className="space-y-12"
             >
-              <motion.div 
-                initial={{ scale: 0.8 }}
-                animate={{ scale: 1 }}
-                className="space-y-12"
-              >
-                <h2 className="text-4xl font-manrope font-black leading-tight">Активация режима<br/>«Я ушел»</h2>
-                <div className="relative flex items-center justify-center">
-                  <svg className="w-48 h-48 -rotate-90">
-                    <circle cx="94" cy="94" r="80" fill="none" stroke="currentColor" strokeWidth="4" className="opacity-10" />
-                    <motion.circle 
-                       cx="94" cy="94" r="80" fill="none" stroke="#2e7d32" strokeWidth="8" strokeDasharray="503"
-                       animate={{ strokeDashoffset: 503 - (503 * awayTimeLeft) / 10 }}
-                    />
-                  </svg>
-                  <div className="absolute text-7xl font-manrope font-black">{awayTimeLeft}</div>
-                </div>
-                <p className="text-white/70 max-w-[240px] mx-auto text-sm">Система выключит все устройства и активирует защиту.</p>
-                <button onClick={cancelAwayMode} className="bg-white text-black px-12 py-5 rounded-full font-manrope font-black text-lg">Отменить</button>
-              </motion.div>
+              <h2 className="text-4xl font-manrope font-black leading-tight">Активация режима<br/>«Я ушел»</h2>
+              <div className="relative flex items-center justify-center">
+                <svg className="w-48 h-48 -rotate-90">
+                  <circle cx="94" cy="94" r="80" fill="none" stroke="currentColor" strokeWidth="4" className="opacity-10" />
+                  <motion.circle 
+                     cx="94" cy="94" r="80" fill="none" stroke="var(--color-primary-container)" strokeWidth="8" strokeDasharray="503"
+                     animate={{ strokeDashoffset: 503 - (503 * awayTimeLeft) / 10 }}
+                  />
+                </svg>
+                <div className="absolute text-7xl font-manrope font-black">{awayTimeLeft}</div>
+              </div>
+              <p className="text-on-primary-container/70 max-w-[240px] mx-auto text-sm">Система выключит все устройства и активирует защиту.</p>
+              <button onClick={cancelAwayMode} className="bg-white text-on-surface px-12 py-5 rounded-full font-manrope font-black text-lg">Отменить</button>
             </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
