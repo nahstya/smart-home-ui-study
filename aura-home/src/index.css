@@ -62,27 +62,31 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Вставь это во второй и третий index.css */
+/* Обновленные стили для полноэкранного отображения */
 body {
   margin: 0;
-  background: #111; /* Темный фон вокруг телефона */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* Меняем темный фон на светлый, как в интерфейсе */
+  background-color: var(--color-surface); 
+  display: block; /* Убираем flex-центровку, если она мешает обычному скроллу */
   min-height: 100vh;
 }
 
 #root {
-  width: 375px;
-  height: 812px;
+  /* Убираем фиксированные размеры телефона */
+  width: 100%;
+  max-width: 600px; /* Ограничиваем ширину для удобства чтения на ПК, либо ставь 100% */
+  margin: 0 auto;  /* Центрируем контент по горизонтали */
+  min-height: 100vh;
+  
+  /* Убираем эффекты корпуса телефона */
   background: white;
   position: relative;
-  overflow: hidden; /* Обрезаем всё, что вылетает за границы трубки */
-  border-radius: 40px;
-  box-shadow: 0 0 50px rgba(0,0,0,0.5);
+  overflow: visible; /* Позволяем контенту определяться высотой страницы */
+  border-radius: 0;   /* Убираем скругления углов "экрана" */
+  box-shadow: none;   /* Убираем тень, имитирующую объем устройства */
 }
 
-/* Добавь этот класс для скрытия полосы прокрутки, но сохранения самой функции */
+/* Оставляем полезный класс для чистоты интерфейса */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
