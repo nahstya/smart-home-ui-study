@@ -62,35 +62,30 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Обновленные стили для полноэкранного отображения */
+/* Убираем все внешние рамки и центрирование через flex */
 body {
   margin: 0;
-  /* Меняем темный фон на светлый, как в интерфейсе */
-  background-color: var(--color-surface); 
-  display: block; /* Убираем flex-центровку, если она мешает обычному скроллу */
+  padding: 0;
+  background-color: var(--color-surface); /* Используем ваш светлый фон из темы */
+  display: block; 
   min-height: 100vh;
 }
 
 #root {
-  /* Убираем фиксированные размеры телефона */
+  /* Растягиваем на всю ширину и высоту */
   width: 100%;
-  max-width: 600px; /* Ограничиваем ширину для удобства чтения на ПК, либо ставь 100% */
-  margin: 0 auto;  /* Центрируем контент по горизонтали */
   min-height: 100vh;
   
-  /* Убираем эффекты корпуса телефона */
+  /* Убираем черную рамку, тени и скругления */
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  
+  /* Разрешаем естественный скролл страницы */
+  overflow: visible;
   background: white;
-  position: relative;
-  overflow: visible; /* Позволяем контенту определяться высотой страницы */
-  border-radius: 0;   /* Убираем скругления углов "экрана" */
-  box-shadow: none;   /* Убираем тень, имитирующую объем устройства */
-}
-
-/* Оставляем полезный класс для чистоты интерфейса */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  
+  /* Центрируем контент, если экран очень широкий (опционально) */
+  margin: 0 auto;
+  max-width: 100%; 
 }
