@@ -1472,7 +1472,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#111] flex items-center justify-center p-4">
       
-      <div id="root" className="relative w-[375px] h-[812px] bg-surface overflow-hidden rounded-[3rem] shadow-2xl border-[8px] border-[#222] flex flex-col">
+      <div id="root" className="relative w-[375px] h-[812px] bg-surface overflow-hidden rounded-[3rem] shadow-2xl flex flex-col">
         
         <main className="flex-1 overflow-y-auto scrollable-content px-4">
           <div className="pt-4">
