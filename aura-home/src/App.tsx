@@ -1470,7 +1470,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#111] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-surface flex items-center justify-center p-4">
       
       <div id="root" className="relative max-w-md mx-auto min-h-screen bg-white flex flex-col">
         
