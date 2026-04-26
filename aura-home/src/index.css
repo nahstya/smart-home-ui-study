@@ -62,30 +62,58 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Убираем все внешние рамки и центрирование через flex */
+/* Вставь это во второй и третий index.css */
+
 body {
+
   margin: 0;
-  padding: 0;
-  background-color: var(--color-surface); /* Используем ваш светлый фон из темы */
-  display: block; 
+
+  background: #111; /* Темный фон вокруг телефона */
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
   min-height: 100vh;
+
 }
 
+
+
 #root {
-  /* Растягиваем на всю ширину и высоту */
-  width: 100%;
-  min-height: 100vh;
-  
-  /* Убираем черную рамку, тени и скругления */
-  border: none !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  
-  /* Разрешаем естественный скролл страницы */
-  overflow: visible;
+
+  width: 375px;
+
+  height: 812px;
+
   background: white;
-  
-  /* Центрируем контент, если экран очень широкий (опционально) */
-  margin: 0 auto;
-  max-width: 100%; 
+
+  position: relative;
+
+  overflow: hidden; /* Обрезаем всё, что вылетает за границы трубки */
+
+  border-radius: 40px;
+
+  box-shadow: 0 0 50px rgba(0,0,0,0.5);
+
+}
+
+
+
+/* Добавь этот класс для скрытия полосы прокрутки, но сохранения самой функции */
+
+.no-scrollbar::-webkit-scrollbar {
+
+  display: none;
+
+}
+
+.no-scrollbar {
+
+  -ms-overflow-style: none;
+
+  scrollbar-width: none;
+
 }
