@@ -1261,11 +1261,19 @@ export default function App() {
                 <div className="grid grid-cols-2 gap-4 pb-10">
                   {(pickerModal === 'if' ? IF_OPTIONS : THEN_OPTIONS).map(opt => {
                     const Icon = IconMap[opt.iconName] || Info;
+                const isDisabled = opt.disabled;
+                
                     return (
                       <button 
                         key={opt.type}
                         onClick={() => pickerModal === 'if' ? addIf(opt) : addThen(opt)}
-                        className="bg-surface-container-low p-6 rounded-[2rem] flex flex-col items-center gap-4 hover:bg-primary/10 hover:text-primary transition-all border border-transparent hover:border-primary/20 group"
+                        className={`
+          p-6 rounded-[2rem] flex flex-col items-center gap-4 transition-all border 
+          ${isDisabled 
+            ? 'bg-gray-50 opacity-50 cursor-not-allowed pointer-events-none' // Стили для "Двери"
+            : 'bg-surface-container-low hover:bg-primary/10 hover:text-primary border-transparent hover:border-primary/20 group'
+          }
+        `}
                       >
                          <div className="w-14 h-14 bg-surface rounded-2xl flex items-center justify-center text-outline group-hover:text-primary shadow-sm transition-transform group-hover:scale-110">
                            <Icon size={28} />
