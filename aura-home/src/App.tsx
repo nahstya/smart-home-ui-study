@@ -397,7 +397,7 @@ export default function App() {
     { type: 'time', label: 'Время', value: 'Выберите период', iconName: 'Clock' },
     { type: 'motion', label: 'Датчик движения', value: 'Зона обнаружения', iconName: 'ScanEye' },
     { type: 'temp', label: 'Температура', value: 'Указать порог', iconName: 'Thermometer' },
-    { type: 'door', label: 'Дверь', value: 'Состояние', iconName: 'Lock' },
+    { type: 'door', label: 'Дверь', value: 'Состояние', iconName: 'Lock', disabled: true },
   ];
 
   const THEN_OPTIONS = [
